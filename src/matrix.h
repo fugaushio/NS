@@ -1,6 +1,6 @@
 #include <iostream>
-#include "name.h"
-using namespace HOGEHOGE;
+#include "namelist.h"
+
 using namespace Eigen;
 
 double get_Se(int num_elem, MatrixXd node, MatrixXi element)
@@ -71,7 +71,6 @@ void set_matrix()
     for (int i = 0; i < element.rows(); i++)
     {
         Se = get_Se(i, node, element);
-        set_uve(i, ue, ve, flow, element);
         set_bc(i, be, ce, node, element);
         Me << 2., 1., 1.,
             1., 2., 1.,
