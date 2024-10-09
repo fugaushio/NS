@@ -50,8 +50,7 @@ void get_BCPoint(string file_in, string file_out, string file_wall)
 void set_namelists()
 {
     M = MatrixXd::Zero(node.rows(), node.rows());
-    Axu = MatrixXd::Zero(node.rows(), node.rows());
-    Ayv = MatrixXd::Zero(node.rows(), node.rows());
+    A = MatrixXd::Zero(node.rows(), node.rows());
     Cx = MatrixXd::Zero(node.rows(), node.rows());
     Cy = MatrixXd::Zero(node.rows(), node.rows());
     D = MatrixXd::Zero(node.rows(), node.rows());
@@ -59,13 +58,22 @@ void set_namelists()
     Gy = MatrixXd::Zero(node.rows(), node.rows());
 
     Me = MatrixXd::Zero(element.cols(), element.cols());
-    Axue = MatrixXd::Zero(element.cols(), element.cols());
-    Ayve = MatrixXd::Zero(element.cols(), element.cols());
+    Ae = MatrixXd::Zero(element.cols(), element.cols());
     Cxe = MatrixXd::Zero(element.cols(), element.cols());
     Cye = MatrixXd::Zero(element.cols(), element.cols());
     De = MatrixXd::Zero(element.cols(), element.cols());
     Gxe = MatrixXd::Zero(element.cols(), element.cols());
     Gye = MatrixXd::Zero(element.cols(), element.cols());
+
+    dAudu = MatrixXd::Zero(node.rows(), node.rows());
+    dAudv = MatrixXd::Zero(node.rows(), node.rows());
+    dAvdu = MatrixXd::Zero(node.rows(), node.rows());
+    dAvdv = MatrixXd::Zero(node.rows(), node.rows());
+
+    dAudue = MatrixXd::Zero(element.cols(), element.cols());
+    dAudve = MatrixXd::Zero(element.cols(), element.cols());
+    dAvdue = MatrixXd::Zero(element.cols(), element.cols());
+    dAvdve = MatrixXd::Zero(element.cols(), element.cols());
 
     P = VectorXd::Zero(node.rows());
     Q = VectorXd::Zero(node.rows());

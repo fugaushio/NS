@@ -109,31 +109,36 @@ void set_PQR()
         Se = get_Se(i, node, element);
         set_uve(i, ue, ve, flow, element);
         set_bc(i, be, ce, node, element);
+
         Me << 2., 1., 1.,
             1., 2., 1.,
             1., 1., 2.;
         Me *= Se / 12.;
 
-        Axue = Me * ue * be.transpose();
-        Ayve = Me * ve * ce.transpose();
-        Axe = Me * be;
-        Aye = Me * ce;
+        Ae = Me * (ue * be.transpose() + ve * ce.transpose());
+        dAudue = be.dot(ue) * Me + Ae;
+        dAudve = ce.dot(ue) * Me;
+        dAvdue = be.dot(ve) * Me;
+        dAvdve = ce.dot(ve) * Me + Ae;
 
-        add_matrix(Axue, Axu, element, i);
-        add_matrix(Ayve, Ayv, element, i);
-        add_vector(Axe, Ax, element, i);
-        add_vector(Axe, Ax, element, i);
+        add_matrix(Ae, A, element, i);
+        add_matrix(dAudue, dAudu, element, i);
+        add_matrix(dAudve, dAudv, element, i);
+        add_matrix(dAvdue, dAvdu, element, i);
+        add_matrix(dAvdve, dAvdv, element, i);
+        // add_vector(Axe, Ax, element, i);
+        // add_vector(Axe, Ax, element, i);
     }
 
-    P = rou * M * u / DT + rou * (Axu + Ayv) * u - Gx * p + myu * D * u - rou * M * u_before / DT;
-    Q = rou * M * v / DT + rou * (Axu + Ayv) * v - Gy * p + myu * D * v - rou * M * v_before / DT;
+    P = rou * M * u / DT + rou * A * u - Gx * p + myu * D * u - rou * M * u_before / DT;
+    Q = rou * M * v / DT + rou * A * v - Gy * p + myu * D * v - rou * M * v_before / DT;
     R = Cx * u + Cy * v;
 
-    dPdu = rou * M / DT + 2. * rou * Axu + rou * Ayv + myu * D;
-    dPdv = rou * Ay * u.transpose();
+    dPdu = rou * M / DT + rou * dAudu + myu * D;
+    dPdv = rou * dAudv;
     dPdp = -Gx;
-    dQdu = rou * Ax * v.transpose();
-    dQdv = rou * M / DT + rou * Axu + 2. * rou * Ayv + myu * D;
+    dQdu = rou * dAvdu;
+    dQdv = rou * M / DT + rou * dAvdv + myu * D;
     dQdp = -Gy;
     dRdu = Cx;
     dRdv = Cy;

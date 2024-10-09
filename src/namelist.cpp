@@ -10,8 +10,7 @@ Eigen::MatrixXi BC_out;
 Eigen::MatrixXi BC_wall;
 
 Eigen::MatrixXd M;
-Eigen::MatrixXd Axu;
-Eigen::MatrixXd Ayv;
+Eigen::MatrixXd A;
 Eigen::MatrixXd Cx;
 Eigen::MatrixXd Cy;
 Eigen::MatrixXd D;
@@ -19,13 +18,22 @@ Eigen::MatrixXd Gx;
 Eigen::MatrixXd Gy;
 
 Eigen::MatrixXd Me;
-Eigen::MatrixXd Axue;
-Eigen::MatrixXd Ayve;
+Eigen::MatrixXd Ae;
 Eigen::MatrixXd Cxe;
 Eigen::MatrixXd Cye;
 Eigen::MatrixXd De;
 Eigen::MatrixXd Gxe;
 Eigen::MatrixXd Gye;
+
+Eigen::MatrixXd dAudu;
+Eigen::MatrixXd dAudv;
+Eigen::MatrixXd dAvdu;
+Eigen::MatrixXd dAvdv;
+
+Eigen::MatrixXd dAudue;
+Eigen::MatrixXd dAudve;
+Eigen::MatrixXd dAvdue;
+Eigen::MatrixXd dAvdve;
 
 Eigen::VectorXd P;
 Eigen::VectorXd Q;

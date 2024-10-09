@@ -10,8 +10,7 @@ extern Eigen::MatrixXi BC_out;
 extern Eigen::MatrixXi BC_wall;
 
 extern Eigen::MatrixXd M;
-extern Eigen::MatrixXd Axu;
-extern Eigen::MatrixXd Ayv;
+extern Eigen::MatrixXd A;
 extern Eigen::MatrixXd Cx;
 extern Eigen::MatrixXd Cy;
 extern Eigen::MatrixXd D;
@@ -19,13 +18,22 @@ extern Eigen::MatrixXd Gx;
 extern Eigen::MatrixXd Gy;
 
 extern Eigen::MatrixXd Me;
-extern Eigen::MatrixXd Axue;
-extern Eigen::MatrixXd Ayve;
+extern Eigen::MatrixXd Ae;
 extern Eigen::MatrixXd Cxe;
 extern Eigen::MatrixXd Cye;
 extern Eigen::MatrixXd De;
 extern Eigen::MatrixXd Gxe;
 extern Eigen::MatrixXd Gye;
+
+extern Eigen::MatrixXd dAudu;
+extern Eigen::MatrixXd dAudv;
+extern Eigen::MatrixXd dAvdu;
+extern Eigen::MatrixXd dAvdv;
+
+extern Eigen::MatrixXd dAudue;
+extern Eigen::MatrixXd dAudve;
+extern Eigen::MatrixXd dAvdue;
+extern Eigen::MatrixXd dAvdve;
 
 extern Eigen::VectorXd P;
 extern Eigen::VectorXd Q;
@@ -50,8 +58,8 @@ extern Eigen::VectorXd p;
 extern Eigen::VectorXd ue;
 extern Eigen::VectorXd ve;
 extern Eigen::VectorXd pe;
-//extern Eigen::VectorXd b;
-//extern Eigen::VectorXd c;
+// extern Eigen::VectorXd b;
+// extern Eigen::VectorXd c;
 extern Eigen::VectorXd be;
 extern Eigen::VectorXd ce;
 
@@ -79,6 +87,5 @@ extern int bpm;
 extern double u_max;
 extern double v_max;
 extern double p0;
-
 
 #endif
