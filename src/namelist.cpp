@@ -46,8 +46,8 @@ Eigen::VectorXd p;
 Eigen::VectorXd ue;
 Eigen::VectorXd ve;
 Eigen::VectorXd pe;
-Eigen::VectorXd b;
-Eigen::VectorXd c;
+//Eigen::VectorXd b;
+//Eigen::VectorXd c;
 Eigen::VectorXd be;
 Eigen::VectorXd ce;
 

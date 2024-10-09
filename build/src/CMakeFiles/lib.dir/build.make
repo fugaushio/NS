@@ -73,15 +73,15 @@ src/CMakeFiles/lib.dir/namelist.cpp.o: src/CMakeFiles/lib.dir/flags.make
 src/CMakeFiles/lib.dir/namelist.cpp.o: /home/ushio/c++/NS/src/namelist.cpp
 src/CMakeFiles/lib.dir/namelist.cpp.o: src/CMakeFiles/lib.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ushio/c++/NS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/lib.dir/namelist.cpp.o"
-	cd /home/ushio/c++/NS/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/lib.dir/namelist.cpp.o -MF CMakeFiles/lib.dir/namelist.cpp.o.d -o CMakeFiles/lib.dir/namelist.cpp.o -c /home/ushio/c++/NS/src/namelist.cpp
+	cd /home/ushio/c++/NS/build/src && /opt/intel/oneapi/compiler/2024.2/bin/icpx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/lib.dir/namelist.cpp.o -MF CMakeFiles/lib.dir/namelist.cpp.o.d -o CMakeFiles/lib.dir/namelist.cpp.o -c /home/ushio/c++/NS/src/namelist.cpp
 
 src/CMakeFiles/lib.dir/namelist.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lib.dir/namelist.cpp.i"
-	cd /home/ushio/c++/NS/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ushio/c++/NS/src/namelist.cpp > CMakeFiles/lib.dir/namelist.cpp.i
+	cd /home/ushio/c++/NS/build/src && /opt/intel/oneapi/compiler/2024.2/bin/icpx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ushio/c++/NS/src/namelist.cpp > CMakeFiles/lib.dir/namelist.cpp.i
 
 src/CMakeFiles/lib.dir/namelist.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lib.dir/namelist.cpp.s"
-	cd /home/ushio/c++/NS/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ushio/c++/NS/src/namelist.cpp -o CMakeFiles/lib.dir/namelist.cpp.s
+	cd /home/ushio/c++/NS/build/src && /opt/intel/oneapi/compiler/2024.2/bin/icpx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ushio/c++/NS/src/namelist.cpp -o CMakeFiles/lib.dir/namelist.cpp.s
 
 # Object files for target lib
 lib_OBJECTS = \

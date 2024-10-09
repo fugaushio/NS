@@ -46,8 +46,8 @@ extern Eigen::VectorXd p;
 extern Eigen::VectorXd ue;
 extern Eigen::VectorXd ve;
 extern Eigen::VectorXd pe;
-extern Eigen::VectorXd b;
-extern Eigen::VectorXd c;
+//extern Eigen::VectorXd b;
+//extern Eigen::VectorXd c;
 extern Eigen::VectorXd be;
 extern Eigen::VectorXd ce;
 

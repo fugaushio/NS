@@ -73,15 +73,15 @@ CMakeFiles/Test.dir/main.cpp.o: CMakeFiles/Test.dir/flags.make
 CMakeFiles/Test.dir/main.cpp.o: /home/ushio/c++/NS/main.cpp
 CMakeFiles/Test.dir/main.cpp.o: CMakeFiles/Test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ushio/c++/NS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Test.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Test.dir/main.cpp.o -MF CMakeFiles/Test.dir/main.cpp.o.d -o CMakeFiles/Test.dir/main.cpp.o -c /home/ushio/c++/NS/main.cpp
+	/opt/intel/oneapi/compiler/2024.2/bin/icpx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Test.dir/main.cpp.o -MF CMakeFiles/Test.dir/main.cpp.o.d -o CMakeFiles/Test.dir/main.cpp.o -c /home/ushio/c++/NS/main.cpp
 
 CMakeFiles/Test.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Test.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ushio/c++/NS/main.cpp > CMakeFiles/Test.dir/main.cpp.i
+	/opt/intel/oneapi/compiler/2024.2/bin/icpx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ushio/c++/NS/main.cpp > CMakeFiles/Test.dir/main.cpp.i
 
 CMakeFiles/Test.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Test.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ushio/c++/NS/main.cpp -o CMakeFiles/Test.dir/main.cpp.s
+	/opt/intel/oneapi/compiler/2024.2/bin/icpx $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ushio/c++/NS/main.cpp -o CMakeFiles/Test.dir/main.cpp.s
 
 # Object files for target Test
 Test_OBJECTS = \

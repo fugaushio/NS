@@ -2,6 +2,7 @@
 #include "namelist.h"
 
 using namespace Eigen;
+using namespace std;
 
 double get_Se(int num_elem, MatrixXd node, MatrixXi element)
 {
@@ -72,6 +73,7 @@ void set_matrix()
     {
         Se = get_Se(i, node, element);
         set_bc(i, be, ce, node, element);
+
         Me << 2., 1., 1.,
             1., 2., 1.,
             1., 1., 2.;
@@ -140,8 +142,6 @@ void set_PQR()
 
 void set_LHS_RHS()
 {
-    LHS = MatrixXd::Zero(3 * node.rows(), 3 * node.rows());
-    RHS = VectorXd::Zero(3 * node.rows());
 
     LHS.block(0, 0, node.rows(), node.rows()) = dPdu;
     LHS.block(0, node.rows(), node.rows(), node.rows()) = dPdv;
