@@ -12,13 +12,17 @@ void set_namelists();
 void get_parameter(string filename)
 {
     MatrixXd parameter = readCSV_d(filename);
-    /*rou,myu,DT,T,outputtime,epsilon,bpm,ux_max,uy_max,vx_max,vy_max,p0*/
+    /*rou,myu,DT,T,outputtime,epsilon,bpm,u_max,v_max,p0*/
     rou = parameter(0, 0);
     myu = parameter(0, 1);
     DT = parameter(0, 2);
     T = parameter(0, 3);
     outputtime = static_cast<int>(parameter(0, 4));
     E_convergence = parameter(0, 5);
+    bpm = static_cast<int>(parameter(0, 6));
+    u_max = parameter(0, 7);
+    v_max = parameter(0, 8);
+    p0 = parameter(0, 9);
 }
 
 void get_geometry(string file_node, string file_element)
@@ -31,9 +35,16 @@ void set_0condition()
 {
     flow = MatrixXd::Zero(node.rows(), 3);
     p = VectorXd::Zero(node.rows());
-    flow(0,0)=1.;
+    flow(0, 0) = 1.;
 
     set_namelists();
+}
+
+void get_BCPoint(string file_in, string file_out, string file_wall)
+{
+    BC_in = readCSV_i(file_in);
+    BC_out = readCSV_i(file_out);
+    BC_wall = readCSV_i(file_wall);
 }
 
 void set_namelists()

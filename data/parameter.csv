@@ -1,2 +1,2 @@
-rou,myu,DT,T,outputtime,epsilon,bpm,ux_max,uy_max,vx_max,vy_max,p0
-1,1,1e-2,4,100,1e-3,0,0,0,0,0,0
+rou,myu,DT,T,outputtime,epsilon,bpm,u_max,v_max,p0
+1,1,1e-2,1,100,30,60,4,0,0

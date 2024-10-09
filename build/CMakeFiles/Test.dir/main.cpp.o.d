@@ -456,4 +456,5 @@ CMakeFiles/Test.dir/main.cpp.o: /home/ushio/c++/NS/main.cpp \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/c++io.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/bits/fstream.tcc \
-  /home/ushio/c++/NS/src/inputdata.h /home/ushio/c++/NS/src/inputcsv.h
+  /home/ushio/c++/NS/src/makeBC.h /home/ushio/c++/NS/src/inputdata.h \
+  /home/ushio/c++/NS/src/inputcsv.h

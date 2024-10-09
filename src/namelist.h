@@ -5,6 +5,10 @@ extern Eigen::MatrixXd node;
 extern Eigen::MatrixXi element;
 extern Eigen::MatrixXd flow;
 
+extern Eigen::MatrixXi BC_in;
+extern Eigen::MatrixXi BC_out;
+extern Eigen::MatrixXi BC_wall;
+
 extern Eigen::MatrixXd M;
 extern Eigen::MatrixXd Axu;
 extern Eigen::MatrixXd Ayv;
@@ -71,5 +75,10 @@ extern double T;
 extern int outputtime;
 
 extern double E_convergence;
+extern int bpm;
+extern double u_max;
+extern double v_max;
+extern double p0;
+
 
 #endif

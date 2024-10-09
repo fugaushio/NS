@@ -5,6 +5,7 @@
 #include "namelist.h"
 #include "matrix.h"
 #include "outputcsv.h"
+#include "makeBC.h"
 
 using namespace std;
 using namespace Eigen;
@@ -27,13 +28,16 @@ void deltastep()
     {
         set_PQR();
         set_LHS_RHS();
+        fix_LHS_RHS();
         calc_LU(delta_UVP, LHS, RHS);
         /*20241007ここまで．ｄの収束判定から*/
         u += delta_UVP.segment(0, node.rows());
         v += delta_UVP.segment(node.rows(), node.rows());
         p += delta_UVP.segment(2 * node.rows(), node.rows());
         j++;
-    } while (/*delta_UVP.norm() < E_convergence*/ j < 2);
+        cout << "deltastep:" << j << endl;
+        cout<<"norm:"<<delta_UVP.norm()<<endl;
+    } while (delta_UVP.norm() > E_convergence /*j < 2*/);
 }
 
 void convergence_judge()
@@ -65,8 +69,9 @@ void timeforward(/*double Time,double DT,vector<double> u, vector<double> v, vec
     v = flow.col(1);
     u_before = u;
     v_before = v;
-    for (int timestep = 0; timestep < T / DT; timestep++)
+    for (int timestep = 1; timestep < T / DT; timestep++)
     {
+        set_BC(timestep * DT);
 
         deltastep();
         convergence_judge();

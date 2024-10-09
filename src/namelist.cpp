@@ -5,6 +5,10 @@ Eigen::MatrixXd node;
 Eigen::MatrixXi element;
 Eigen::MatrixXd flow;
 
+Eigen::MatrixXi BC_in;
+Eigen::MatrixXi BC_out;
+Eigen::MatrixXi BC_wall;
+
 Eigen::MatrixXd M;
 Eigen::MatrixXd Axu;
 Eigen::MatrixXd Ayv;
@@ -46,8 +50,8 @@ Eigen::VectorXd p;
 Eigen::VectorXd ue;
 Eigen::VectorXd ve;
 Eigen::VectorXd pe;
-//Eigen::VectorXd b;
-//Eigen::VectorXd c;
+// Eigen::VectorXd b;
+// Eigen::VectorXd c;
 Eigen::VectorXd be;
 Eigen::VectorXd ce;
 
@@ -71,3 +75,8 @@ double T;
 int outputtime;
 
 double E_convergence;
+
+int bpm;
+double u_max;
+double v_max;
+double p0;
