@@ -87,9 +87,9 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/opt/intel/oneapi/tbb/2021.13/include;/opt/intel/oneapi/mpi/2021.13/include;/opt/intel/oneapi/mkl/2024.2/include;/opt/intel/oneapi/ippcp/2021.12/include;/opt/intel/oneapi/ipp/2021.12/include;/opt/intel/oneapi/dpl/2022.6/include;/opt/intel/oneapi/dpcpp-ct/2024.2/include;/opt/intel/oneapi/dnnl/2024.2/include;/opt/intel/oneapi/dev-utilities/2024.2/include;/opt/intel/oneapi/dal/2024.5/include/dal;/opt/intel/oneapi/ccl/2021.13/include;/opt/intel/oneapi/compiler/2024.2/opt/compiler/include;/usr/include/c++/13;/usr/include/x86_64-linux-gnu/c++/13;/usr/include/c++/13/backward;/opt/intel/oneapi/compiler/2024.2/lib/clang/19/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/include;/usr/include")
+set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/opt/intel/oneapi/compiler/2024.2/opt/compiler/include;/usr/include/c++/13;/usr/include/x86_64-linux-gnu/c++/13;/usr/include/c++/13/backward;/opt/intel/oneapi/compiler/2024.2/lib/clang/19/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/include;/usr/include")
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "svml;irng;stdc++;imf;m;gcc_s;gcc;irc;dl;gcc_s;gcc;c;gcc_s;gcc;irc_s")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/opt/intel/oneapi/compiler/2024.2/lib;/opt/intel/oneapi/compiler/2024.2/lib/clang/19/lib/x86_64-unknown-linux-gnu;/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/usr/lib;/opt/intel/oneapi/compiler/2024.2/opt/compiler/lib;/lib;/opt/intel/oneapi/tbb/2021.13/lib/intel64/gcc4.8;/opt/intel/oneapi/mpi/2021.13/lib;/opt/intel/oneapi/mkl/2024.2/lib;/opt/intel/oneapi/ippcp/2021.12/lib;/opt/intel/oneapi/ipp/2021.12/lib;/opt/intel/oneapi/dpl/2022.6/lib;/opt/intel/oneapi/dnnl/2024.2/lib;/opt/intel/oneapi/dal/2024.5/lib;/opt/intel/oneapi/ccl/2021.13/lib")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/opt/intel/oneapi/compiler/2024.2/lib;/opt/intel/oneapi/compiler/2024.2/lib/clang/19/lib/x86_64-unknown-linux-gnu;/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/usr/lib;/opt/intel/oneapi/compiler/2024.2/opt/compiler/lib;/lib")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")
 set(CMAKE_CXX_COMPILER_CLANG_RESOURCE_DIR "")
 

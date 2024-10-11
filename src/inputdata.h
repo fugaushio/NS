@@ -35,7 +35,7 @@ void set_0condition()
 {
     flow = MatrixXd::Zero(node.rows(), 3);
     p = VectorXd::Zero(node.rows());
-    flow(0, 0) = 1.;
+    flow_before = flow;
 
     set_namelists();
 }
@@ -56,6 +56,15 @@ void set_namelists()
     D = MatrixXd::Zero(node.rows(), node.rows());
     Gx = MatrixXd::Zero(node.rows(), node.rows());
     Gy = MatrixXd::Zero(node.rows(), node.rows());
+    Ms = MatrixXd::Zero(node.rows(), node.rows());
+    As = MatrixXd::Zero(node.rows(), node.rows());
+    Gs1 = MatrixXd::Zero(node.rows(), node.rows());
+    Gs2 = MatrixXd::Zero(node.rows(), node.rows());
+    Mp1 = MatrixXd::Zero(node.rows(), node.rows());
+    Mp2 = MatrixXd::Zero(node.rows(), node.rows());
+    Ap1 = MatrixXd::Zero(node.rows(), node.rows());
+    Ap2 = MatrixXd::Zero(node.rows(), node.rows());
+    Gp = MatrixXd::Zero(node.rows(), node.rows());
 
     Me = MatrixXd::Zero(element.cols(), element.cols());
     Ae = MatrixXd::Zero(element.cols(), element.cols());
@@ -64,16 +73,73 @@ void set_namelists()
     De = MatrixXd::Zero(element.cols(), element.cols());
     Gxe = MatrixXd::Zero(element.cols(), element.cols());
     Gye = MatrixXd::Zero(element.cols(), element.cols());
+    Mse = MatrixXd::Zero(element.cols(), element.cols());
+    Ase = MatrixXd::Zero(element.cols(), element.cols());
+    Gs1e = MatrixXd::Zero(element.cols(), element.cols());
+    Gs2e = MatrixXd::Zero(element.cols(), element.cols());
+    Mp1e = MatrixXd::Zero(element.cols(), element.cols());
+    Mp2e = MatrixXd::Zero(element.cols(), element.cols());
+    Ap1e = MatrixXd::Zero(element.cols(), element.cols());
+    Ap2e = MatrixXd::Zero(element.cols(), element.cols());
+    Gpe = MatrixXd::Zero(element.cols(), element.cols());
 
     dAudu = MatrixXd::Zero(node.rows(), node.rows());
     dAudv = MatrixXd::Zero(node.rows(), node.rows());
     dAvdu = MatrixXd::Zero(node.rows(), node.rows());
     dAvdv = MatrixXd::Zero(node.rows(), node.rows());
+    dMsudu = MatrixXd::Zero(node.rows(), node.rows());
+    dMsudv = MatrixXd::Zero(node.rows(), node.rows());
+    dMsvdu = MatrixXd::Zero(node.rows(), node.rows());
+    dMsvdv = MatrixXd::Zero(node.rows(), node.rows());
+    dMsu_du = MatrixXd::Zero(node.rows(), node.rows());
+    dMsu_dv = MatrixXd::Zero(node.rows(), node.rows());
+    dMsv_du = MatrixXd::Zero(node.rows(), node.rows());
+    dMsv_dv = MatrixXd::Zero(node.rows(), node.rows());
+    dAsudu = MatrixXd::Zero(node.rows(), node.rows());
+    dAsudv = MatrixXd::Zero(node.rows(), node.rows());
+    dAsvdu = MatrixXd::Zero(node.rows(), node.rows());
+    dAsvdv = MatrixXd::Zero(node.rows(), node.rows());
+    dGs1pdu = MatrixXd::Zero(node.rows(), node.rows());
+    dGs1pdv = MatrixXd::Zero(node.rows(), node.rows());
+    dGs2pdu = MatrixXd::Zero(node.rows(), node.rows());
+    dGs2pdv = MatrixXd::Zero(node.rows(), node.rows());
+    dAp1udu = MatrixXd::Zero(node.rows(), node.rows());
+    dAp1udv = MatrixXd::Zero(node.rows(), node.rows());
+    dAp1vdu = MatrixXd::Zero(node.rows(), node.rows());
+    dAp1vdv = MatrixXd::Zero(node.rows(), node.rows());
+    dAp2udu = MatrixXd::Zero(node.rows(), node.rows());
+    dAp2udv = MatrixXd::Zero(node.rows(), node.rows());
+    dAp2vdu = MatrixXd::Zero(node.rows(), node.rows());
+    dAp2vdv = MatrixXd::Zero(node.rows(), node.rows());
 
     dAudue = MatrixXd::Zero(element.cols(), element.cols());
     dAudve = MatrixXd::Zero(element.cols(), element.cols());
     dAvdue = MatrixXd::Zero(element.cols(), element.cols());
     dAvdve = MatrixXd::Zero(element.cols(), element.cols());
+    dMsudue = MatrixXd::Zero(element.cols(), element.cols());
+    dMsudve = MatrixXd::Zero(element.cols(), element.cols());
+    dMsvdue = MatrixXd::Zero(element.cols(), element.cols());
+    dMsvdve = MatrixXd::Zero(element.cols(), element.cols());
+    dMsu_due = MatrixXd::Zero(element.cols(), element.cols());
+    dMsu_dve = MatrixXd::Zero(element.cols(), element.cols());
+    dMsv_due = MatrixXd::Zero(element.cols(), element.cols());
+    dMsv_dve = MatrixXd::Zero(element.cols(), element.cols());
+    dAsudue = MatrixXd::Zero(element.cols(), element.cols());
+    dAsudve = MatrixXd::Zero(element.cols(), element.cols());
+    dAsvdue = MatrixXd::Zero(element.cols(), element.cols());
+    dAsvdve = MatrixXd::Zero(element.cols(), element.cols());
+    dGs1pdue = MatrixXd::Zero(element.cols(), element.cols());
+    dGs1pdve = MatrixXd::Zero(element.cols(), element.cols());
+    dGs2pdue = MatrixXd::Zero(element.cols(), element.cols());
+    dGs2pdve = MatrixXd::Zero(element.cols(), element.cols());
+    dAp1udue = MatrixXd::Zero(element.cols(), element.cols());
+    dAp1udve = MatrixXd::Zero(element.cols(), element.cols());
+    dAp1vdue = MatrixXd::Zero(element.cols(), element.cols());
+    dAp1vdve = MatrixXd::Zero(element.cols(), element.cols());
+    dAp2udue = MatrixXd::Zero(element.cols(), element.cols());
+    dAp2udve = MatrixXd::Zero(element.cols(), element.cols());
+    dAp2vdue = MatrixXd::Zero(element.cols(), element.cols());
+    dAp2vdve = MatrixXd::Zero(element.cols(), element.cols());
 
     P = VectorXd::Zero(node.rows());
     Q = VectorXd::Zero(node.rows());
@@ -96,6 +162,8 @@ void set_namelists()
     ue = VectorXd::Zero(3);
     ve = VectorXd::Zero(3);
     pe = VectorXd::Zero(3);
+    ue_before = VectorXd::Zero(node.rows());
+    ve_before = VectorXd::Zero(node.rows());
     // b;
     // c;
     be = VectorXd::Zero(3);

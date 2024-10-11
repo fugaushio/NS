@@ -79,6 +79,8 @@ void timeforward(/*double Time,double DT,vector<double> u, vector<double> v, vec
         flow.col(1) = v;
         u_before = u;
         v_before = v;
+        flow_before.col(0) = u_before;
+        flow_before.col(1) = v_before;
         if (hasNaN(flow))
         {
             cout << "generate NaN values. error" << endl;

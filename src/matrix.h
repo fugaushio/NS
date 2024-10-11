@@ -3,6 +3,8 @@
 
 using namespace Eigen;
 using namespace std;
+double pi = 3.1415926535;
+MatrixXd I = MatrixXd::Identity(3, 3);
 
 double get_Se(int num_elem, MatrixXd node, MatrixXi element)
 {
@@ -14,6 +16,22 @@ double get_Se(int num_elem, MatrixXd node, MatrixXi element)
     double y2 = node(element(num_elem, 2), 1);
 
     return fabs((x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0)) / 2.;
+}
+
+double get_taus(VectorXd ue, VectorXd ve, double nyu, double Se)
+{
+    double tau;
+    double he = sqrt(4. * Se / pi);
+    tau = pow(pow((ue.norm() + ve.norm()) / he, 2.) + pow(4. * nyu / he / he, 2.), -0.5);
+    return tau;
+}
+
+double get_taup(VectorXd ue, VectorXd ve, double nyu, double Se)
+{
+    double tau;
+    double he = sqrt(4. * Se / pi);
+    tau = he * (ue.norm() + ve.norm()) / 4.;
+    return tau;
 }
 
 void set_bc(int num_elem, VectorXd &b, VectorXd &c, MatrixXd node, MatrixXi element)
@@ -66,13 +84,18 @@ void add_vector(VectorXd Xe, VectorXd &X, MatrixXi element, int i)
 
 void set_matrix()
 {
-    double Se = 0.;
-    double tau = 0.;
+    Se = 0.;
+    taus = 0.;
+    taup = 0.;
 
     for (int i = 0; i < element.rows(); i++)
     {
         Se = get_Se(i, node, element);
+        set_uve(i, ue, ve, flow, element);
+        set_uve(i, ue_before, ve_before, flow_before, element);
         set_bc(i, be, ce, node, element);
+        taus = get_taus(ue, ve, myu / rou, Se);
+        taup = get_taup(ue, ve, myu / rou, Se);
 
         Me << 2., 1., 1.,
             1., 2., 1.,
@@ -88,9 +111,32 @@ void set_matrix()
         Gye = Cye.transpose();
         De = Se * (be * be.transpose() + ce * ce.transpose());
 
-        // tau = get_tau(ue, ve, para(2), Se, flag);
-        // Mse = tau * Ae.transpose();
-        // Ase = tau * Ae.transpose() * Me.inverse() * Ae;
+        Ae = Me * (ue * be.transpose() + ve * ce.transpose());
+        dAudue = be.dot(ue) * Me + Ae;
+        dAudve = ce.dot(ue) * Me;
+        dAvdue = be.dot(ve) * Me;
+        dAvdve = ce.dot(ve) * Me + Ae;
+
+        // SUPG
+        Ms = taus * (be * ue.transpose() + ce * ve.transpose());
+        dMsudu = taus * (2 * be * ue.transpose() + ce * ve.transpose()) * Me;
+        dMsudv = taus * (ce * ue.transpose()) * Me;
+        dMsvdu = taus * (be * ve.transpose()) * Me;
+        dMsvdv = taus * (be * ue.transpose() + 2 * ce * ve.transpose()) * Me;
+        dMsu_du = taus * (be * ue_before.transpose()) * Me;
+        dMsu_dv = taus * (ce * ue_before.transpose()) * Me;
+        dMsv_du = taus * (be * ve_before.transpose()) * Me;
+        dMsv_dv = taus * (ce * ve_before.transpose()) * Me;
+
+        As = taus * (be * ue.transpose() + ce * ve.transpose()) * Me * (ue * be.transpose() + ve * ce.transpose());
+        dAsudu = taus * (be.transpose() * Me * (be.dot(ue) * ue + ce.dot(ue) * ve) + (be * ue.transpose() + ce * ve.transpose()) * Me * (be.dot(ue) * I + ue * be.transpose() + ve * ce.transpose()));
+        dAsudv = taus * (ce.transpose() * Me * (be.dot(ue) * ue + ce.dot(ue) * ve) + (be * ue.transpose() + ce * ve.transpose()) * Me * (ce.dot(ue) * I));
+        dAsvdu = taus * (be.transpose() * Me * (be.dot(ve) * ue + ce.dot(ve) * ve) + (be * ue.transpose() + ce * ve.transpose()) * Me * (be.dot(ve) * I));
+        dAsvdv = taus * (ce.transpose() * Me * (be.dot(ve) * ue + ce.dot(ve) * ve) + (be * ue.transpose() + ce * ve.transpose()) * Me * (ce.dot(ve) * I + ue * be.transpose() + ve * ce.transpose()));
+
+        Gs1=taus*(be*ue.transpose()+ce*ve.transpose())*Gx.transpose();
+        Gs2=taus*(be*ue.transpose()+ce*ve.transpose())*Gy.transpose();
+        dGs1pdu=taus*be.transpose()*Gx.transpose();///20241011 pe作ることこから
 
         add_matrix(Me, M, element, i);
         add_matrix(De, D, element, i);
@@ -98,6 +144,11 @@ void set_matrix()
         add_matrix(Cye, Cy, element, i);
         add_matrix(Gxe, Gx, element, i);
         add_matrix(Gye, Gy, element, i);
+        add_matrix(Ae, A, element, i);
+        add_matrix(dAudue, dAudu, element, i);
+        add_matrix(dAudve, dAudv, element, i);
+        add_matrix(dAvdue, dAvdu, element, i);
+        add_matrix(dAvdve, dAvdv, element, i);
     }
 }
 
